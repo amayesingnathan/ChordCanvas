@@ -5,6 +5,12 @@ ChordCanvas is a small C# library which provides an API for generating images of
 
 This library uses the implementation of a HTML5 canvas for Microsoft Blazor, [found here](https://github.com/BlazorExtensions/Canvas). This API does not provide a mechanism to create or retrieve chord objects, nor the actual canvas for drawing to. It should be paired with a web service or app that can construct the requested chord data, and the canvas context is passed as a parameter on a draw call.
 
+If you wish to use this API in your own project, it can be cloned as is and added as a project reference, using
+```
+git clone https://github.com/amayesingnathan/chord-canvas.git
+```
+or it is available as a NuGet package.
+
 ## Documentation
 
 ### Syntax
