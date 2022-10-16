@@ -9,7 +9,7 @@ If you wish to use this API in your own project, it can be cloned as is and adde
 ```
 git clone https://github.com/amayesingnathan/chord-canvas.git
 ```
-or it is available as a NuGet package.
+or it is available as a NuGet package [here](https://www.nuget.org/packages/chord-canvas/).
 
 ## Documentation
 
