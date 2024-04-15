@@ -8,24 +8,28 @@ using System.Threading.Tasks;
 
 namespace ChordCanvas
 {
-    internal class Graphics
+    internal class GraphicsContext
     {
-        private static Canvas2DContext _ctx;
+        private Canvas2DContext _ctx;
 
-        public static void SetContext(Canvas2DContext ctx) { _ctx = ctx; }
+        public GraphicsContext(Canvas2DContext ctx)
+        {
+            _ctx = ctx;
+        }
 
-        public static Pen CreatePen(string colour, double size)
+        public Pen CreatePen(string colour, double size)
         {
             return new Pen(_ctx, colour, size);
         }
-        public static Font CreateFont(string name, double size)
+        public Font CreateFont(string name, double size)
         {
             return new Font(_ctx, name, size);
         }
 
-        public static async Task DrawLine(Pen pen, double x1, double y1, double x2, double y2)
+        public async Task DrawLine(Pen pen, double x1, double y1, double x2, double y2)
         {
-            if (_ctx is null) return;
+            if (_ctx is null) 
+                return;
 
             await _ctx.BeginPathAsync();
             await pen.Set();
@@ -34,18 +38,20 @@ namespace ChordCanvas
             await _ctx.StrokeAsync();
         }
 
-        public static async Task FillRectangle(string color, double x1, double y1, double x2, double y2)
+        public async Task FillRectangle(string color, double x1, double y1, double x2, double y2)
         {
-            if (_ctx is null) return;
+            if (_ctx is null) 
+                return;
 
             await _ctx.BeginPathAsync();
             await _ctx.SetFillStyleAsync(color);
             await _ctx.RectAsync(x1, y1, x2, y2);
             await _ctx.FillAsync();
         }
-        public static async Task DrawCircle(Pen pen, double x1, double y1, double diameter)
+        public async Task DrawCircle(Pen pen, double x1, double y1, double diameter)
         {
-            if (_ctx is null) return;
+            if (_ctx is null) 
+                return;
 
             var radius = diameter / 2;
             await _ctx.BeginPathAsync();
@@ -53,9 +59,10 @@ namespace ChordCanvas
             await _ctx.ArcAsync(x1 + radius, y1 + radius, radius, 0, 2 * Math.PI, false);
             await _ctx.StrokeAsync();
         }
-        public static async Task FillCircle(string color, double x1, double y1, double diameter)
+        public async Task FillCircle(string color, double x1, double y1, double diameter)
         {
-            if (_ctx is null) return;
+            if (_ctx is null)
+                return;
 
             var radius = diameter / 2;
             await _ctx.BeginPathAsync();
@@ -64,9 +71,10 @@ namespace ChordCanvas
             await _ctx.FillAsync();
         }
 
-        public static async Task DrawString(string text, Font font, string color, double x, double y, TextAlign align = TextAlign.Center)
+        public async Task DrawString(string text, Font font, string color, double x, double y, TextAlign align = TextAlign.Center)
         {
-            if (_ctx is null) return;
+            if (_ctx is null) 
+                return;
 
             await font.Set();
             await _ctx.SetTextAlignAsync(align);
